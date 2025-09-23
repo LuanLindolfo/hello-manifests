@@ -1,0 +1,43 @@
+#Deploymenyt do Kubernetes para a aplicação 'hello-app'
+#Vai gerenciar a implantação e o ciclo de vida dos pods
+
+
+#A apiVersion 'apps/v1' é a versão da API do Kubernetes para Deployments.
+apiVersion: apps/v1
+#'kind: Deployment' indica que este manifesto está definindo um Deployment.
+kind: Deployment
+#A seção 'metadata' contém informações sobre o recurso.
+metadata:
+  #O nome do seu Deployment, que o identifica de forma única.
+  name: hello-app
+  # Os 'labels' (rótulos) são pares de chave-valor para organizar e selecionar recursos.
+  labels:
+    app: hello-app
+#A seção 'spec' define as especificações desejadas para o Deployment.
+spec:
+  # 'replicas: 1' garante que uma única cópia (réplica) do seu pod esteja sempre em execução.
+  replicas: 1
+  #'selector' define como o Deployment encontra os pods que ele deve gerenciar.
+  selector:
+    #Ele seleciona os pods que têm o rótulo 'app: hello-app'.
+    matchLabels:
+      app: hello-app
+  #O 'template' define o template dos pods que o Deployment vai criar.
+  template:
+    #A seção 'metadata' do pod.
+    metadata:
+      #Os rótulos do pod, que o 'selector' do Deployment usará para encontrá-lo.
+      labels:
+        app: hello-app
+    #A seção 'spec' do pod, que define o que ele contém.
+    spec:
+      #A lista de contêineres que estarão dentro do pod.
+      containers:
+      #A definição do seu único contêiner.
+      - name: hello-app
+        #A imagem Docker a ser usada para criar o contêiner.
+        image: gcr.io/google-samples/hello-app:1.0
+        #'ports' expõe a porta dentro do contêiner.
+        ports:
+        #'containerPort: 8080' é a porta que a aplicação dentro do contêiner está ouvindo.
+        - containerPort: 8080
