@@ -1,0 +1,30 @@
+#Define o service
+#Expõe o aplicativo de forma estável
+#e permite que ele seja acessado por outras aplicações ou pelo tráfego externo.
+
+
+# A 'apiVersion' 'v1' é a versão da API do Kubernetes para Services.
+apiVersion: v1
+# 'kind: Service' indica que este manifesto está definindo um Service.
+kind: Service
+# A seção 'metadata' contém informações sobre o recurso.
+metadata:
+  # O nome do seu Service.
+  name: hello-app-service
+  # Os rótulos do Service, usados para identificação.
+  labels:
+    app: hello-app
+# A seção 'spec' define as especificações do Service.
+spec:
+  # 'type: LoadBalancer' cria um balanceador de carga externo para expor seu aplicativo.
+  type: LoadBalancer
+  # 'ports' define como o tráfego é roteado para o seu aplicativo.
+  ports:
+  # Define uma porta para o Service.
+  - port: 80
+    # O tráfego que chega na 'port: 80' do Service é encaminhado para a 'targetPort: 8080' do pod.
+    targetPort: 8080
+  # 'selector' define para quais pods este Service deve encaminhar o tráfego.
+  selector:
+    # O Service roteia o tráfego para qualquer pod que tenha o rótulo 'app: hello-app'.
+    app: hello-app
