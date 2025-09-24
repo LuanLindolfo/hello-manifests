@@ -21,9 +21,9 @@ spec:
   # 'ports' define como o tráfego é roteado para o seu aplicativo.
   ports:
   # Define uma porta para o Service.
-  - port: 80
-    # O tráfego que chega na 'port: 80' do Service é encaminhado para a 'targetPort: 8080' do pod.
-    targetPort: 8080
+  - port: 8080
+    # O tráfego que chega na 'port: 8080' do Service é encaminhado para a 'targetPort: 80' do pod.
+    targetPort: 80
   # 'selector' define para quais pods este Service deve encaminhar o tráfego.
   selector:
     # O Service roteia o tráfego para qualquer pod que tenha o rótulo 'app: hello-app'.
