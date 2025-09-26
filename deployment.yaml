@@ -36,7 +36,7 @@ spec:
       #A definição do seu único contêiner.
       - name: hello-app
         #A imagem Docker a ser usada para criar o contêiner.
-        image: luanmello12/hello-app:0da5d71725d681b38f66463b7a0db9ac98aac5bd
+        image: luanmello12/hello-app:13bc67d2803b40a2717af2236d284f8133279178
         #'ports' expõe a porta dentro do contêiner.
         ports:
         #'containerPort: 8080' é a porta que a aplicação dentro do contêiner está ouvindo.
